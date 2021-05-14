@@ -1,0 +1,4 @@
+unique_id,timestamp,tag,smodel,test_data,x_shape,eval_test,model_version,model_version_note,runtime
+438ddf57-4632-4cf0-abe2-35d1ea9e32ed,1621013623.029195,hong_kong,rf,False,"('2018-04-19', '2019-05-01')",{'rmse': 852},0.1,supervised learning model for time-series,000:00:01
+3dfc96ed-8ebe-4c0e-a8ef-4a723e03a8c1,1621013967.972527,hong_kong,rf,False,"('2018-04-19', '2019-05-01')",{'rmse': 852},0.1,supervised learning model for time-series,000:00:01
+7b874202-270f-4b92-8555-a561fbab15e0,1621014193.2220669,hong_kong,rf,False,"('2018-04-19', '2019-05-01')",{'rmse': 852},0.1,supervised learning model for time-series,000:00:01
