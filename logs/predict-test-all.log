@@ -1,3 +1,0 @@
-unique_id,timestamp,tag,y_pred,y_proba,query,model_version,runtime
-a7ea5795-4b18-4e55-be3b-baef43445cb4,1621014182.9368691,all,[0],"[0.6, 0.4]",2018-01-05,0.1,00:00:02
-56117cca-734a-40d9-9121-c9dfb0b94d25,1621014182.937088,all,[0],"[0.6, 0.4]",2018-01-05,0.1,00:00:02

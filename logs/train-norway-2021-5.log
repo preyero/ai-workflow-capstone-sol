@@ -1,4 +1,0 @@
-unique_id,timestamp,tag,smodel,test_data,x_shape,eval_test,model_version,model_version_note,runtime
-af72ecd7-08e2-46d4-9f1d-e58b41b71ec7,1621013640.998997,norway,rf,False,"('2017-12-05', '2019-05-11')",{'rmse': 65},0.1,supervised learning model for time-series,000:00:02
-ea5f99c8-e74d-4fe2-80a3-5850495b60a6,1621013984.375524,norway,rf,False,"('2017-12-05', '2019-05-11')",{'rmse': 65},0.1,supervised learning model for time-series,000:00:02
-d9c57448-c480-401e-b961-fea66bed5f7f,1621014209.794678,norway,rf,False,"('2017-12-05', '2019-05-11')",{'rmse': 65},0.1,supervised learning model for time-series,000:00:02

@@ -1,3 +1,0 @@
-unique_id,timestamp,tag,smodel,test_data,x_shape,eval_test,model_version,model_version_note,runtime
-84248b07-b9a0-4ba4-a44d-2c15df72bb8b,1621014182.933155,all,rf,True,"(100, 10)",{'rmse': 0.5},0.1,test model,00:00:01
-e54e73e4-6c7b-4296-8728-7ad948bcf7f4,1621014182.933377,all,rf,True,"(100, 10)",{'rmse': 0.5},0.1,test model,00:00:01

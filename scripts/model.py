@@ -11,6 +11,9 @@ import pandas as pd
 from sklearn import svm
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.svm import LinearSVR
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.pipeline import Pipeline
@@ -22,6 +25,7 @@ from scripts.cslib import fetch_ts, engineer_features
 MODEL_DIR = "models"
 MODEL_VERSION = 0.1
 MODEL_VERSION_NOTE = "supervised learning model for time-series"
+
 
 def _model_train(df,tag,smodel='rf',test=False):
     """
@@ -59,6 +63,23 @@ def _model_train(df,tag,smodel='rf',test=False):
             'clf__criterion': ['mse','mae'],
             'clf__n_estimators': [10,15,20,25]
         }
+    elif smodel == 'svr':
+        clf = LinearSVR(random_state=4242)
+        param_grid = {
+            'clf__C': [0.1, 0.5, 1.0, 1.5],
+            'clf__loss': ['epsilon_insensitive', 'squared_epsilon_insensitive']
+        }
+    elif smodel == 'knr':
+        clf = KNeighborsRegressor()
+        param_grid = {
+            'clf__n_neighbors': [1, 2, 5, 7],
+            'clf__weights': ['uniform', 'distance']
+        }
+    elif smodel == 'lr':
+        clf = LinearRegression()
+        param_grid = {
+            'clf__normalize': [True,False],
+        }
     else:
         raise Exception("smodel not supported: {}".format(smodel))
 
@@ -75,11 +96,11 @@ def _model_train(df,tag,smodel='rf',test=False):
     model_name = re.sub("\.","_",str(MODEL_VERSION))
     if test:
         saved_model = os.path.join(MODEL_DIR,
-                                   "test-{}-{}.joblib".format(tag,model_name))
+                                   "test-{}-{}-{}.joblib".format(smodel,tag,model_name))
         print("... saving test version of model: {}".format(saved_model))
     else:
         saved_model = os.path.join(MODEL_DIR,
-                                   "sl-{}-{}.joblib".format(tag,model_name))
+                                   "sl-{}-{}-{}.joblib".format(smodel,tag,model_name))
         print("... saving model: {}".format(saved_model))
         
     joblib.dump(grid,saved_model)
@@ -123,7 +144,7 @@ def model_train(data_dir=None, smodel='rf',test=False):
         _model_train(df,country,smodel=smodel,test=test)
 
 
-def model_load(prefix='sl',data_dir=None,training=True):
+def model_load(prefix='sl-rf-',data_dir=None,training=True):
     """
     example funtion to load model
     
@@ -133,14 +154,14 @@ def model_load(prefix='sl',data_dir=None,training=True):
     if not data_dir:
         data_dir = os.path.join(".","cs-train")
     
-    models = [f for f in os.listdir(os.path.join(".","models")) if re.search("sl",f)]
+    models = [f for f in os.listdir(os.path.join(".","models")) if re.search(prefix,f)]
 
     if len(models) == 0:
         raise Exception("Models with prefix '{}' cannot be found did you train?".format(prefix))
 
     all_models = {}
     for model in models:
-        all_models[re.split("-",model)[1]] = joblib.load(os.path.join(".","models",model))
+        all_models[re.split("-",model)[2]] = joblib.load(os.path.join(".","models",model))
 
     ## load data
     ts_data = fetch_ts(data_dir)
@@ -153,7 +174,7 @@ def model_load(prefix='sl',data_dir=None,training=True):
     return(all_data, all_models)
 
 
-def model_predict(country,year,month,day,all_models=None,all_data=None,test=False):
+def model_predict(country,year,month,day,prefix='sl-rf-',all_models=None,all_data=None,test=False):
     """
     example funtion to predict from model
     """
@@ -164,7 +185,7 @@ def model_predict(country,year,month,day,all_models=None,all_data=None,test=Fals
     ## load model if needed
     if not all_models and not all_data:
         print("...Using all data and models from cs-train/ts-* and models/sl-*")
-        all_data, all_models = model_load(training=False)
+        all_data, all_models = model_load(training=False, prefix=prefix)
     
     ## input checks
     if country not in all_models.keys():
@@ -221,7 +242,9 @@ if __name__ == "__main__":
     print("TRAINING MODELS")
     data_dir = os.path.join(".","cs-train")
     model_train(data_dir,test=True) # 'test
-    model_train(data_dir, test=False) # 'sl'
+    clfs = ['rf', 'svr', 'knr', 'logit']
+    for clf in clfs:
+        model_train(data_dir, smodel=clf, test=False) # 'sl'
 
     ## load the model
     print("LOADING MODELS")
