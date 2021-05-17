@@ -1,0 +1,3 @@
+unique_id,timestamp,tag,y_pred,y_proba,query,model_version,runtime
+8099634e-14be-4462-88df-f1aa1173ef93,1621274134.827931,all,[184414.794],None,2018-01-05,0.1,000:00:20
+abe8fd4b-885e-46af-83aa-2ffe1c5112ec,1621274153.853714,germany,[2333.8152],None,2018-01-05,0.1,000:00:19

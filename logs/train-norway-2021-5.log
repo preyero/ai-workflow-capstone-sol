@@ -1,0 +1,5 @@
+unique_id,timestamp,tag,smodel,test_data,x_shape,eval_test,model_version,model_version_note,runtime
+b51da00f-009a-40a5-ae83-6b7da8863445,1621274043.747655,norway,rf,False,"('2017-12-05', '2019-05-11')",{'rmse': 65},0.1,supervised learning model for time-series,000:00:02
+48efa234-9204-4791-af18-4ee39c0cf119,1621274067.889782,norway,svr,False,"('2017-12-05', '2019-05-11')",{'rmse': 373},0.1,supervised learning model for time-series,000:00:01
+ef46ed34-f7c9-41d2-b039-4bf5fab098cc,1621274089.539728,norway,knr,False,"('2017-12-05', '2019-05-11')",{'rmse': 43},0.1,supervised learning model for time-series,000:00:01
+9132a6fa-c083-43c1-864b-fb6b53091593,1621274109.989572,norway,lr,False,"('2017-12-05', '2019-05-11')",{'rmse': 374},0.1,supervised learning model for time-series,000:00:01

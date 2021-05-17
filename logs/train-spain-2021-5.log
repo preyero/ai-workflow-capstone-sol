@@ -1,0 +1,5 @@
+unique_id,timestamp,tag,smodel,test_data,x_shape,eval_test,model_version,model_version_note,runtime
+d53849f4-3f04-40e5-8a84-3ac9f77f9a71,1621274032.354923,spain,rf,False,"('2017-12-01', '2019-05-31')",{'rmse': 234},0.1,supervised learning model for time-series,000:00:03
+babe828b-e025-4a80-9115-96a0d03333a3,1621274060.562825,spain,svr,False,"('2017-12-01', '2019-05-31')",{'rmse': 753},0.1,supervised learning model for time-series,000:00:02
+7890e7e5-1b6b-4014-8f40-df7d6c011995,1621274082.189707,spain,knr,False,"('2017-12-01', '2019-05-31')",{'rmse': 237},0.1,supervised learning model for time-series,000:00:02
+7d2cdec5-0d75-410f-952a-232bb34fcadf,1621274102.8896441,spain,lr,False,"('2017-12-01', '2019-05-31')",{'rmse': 754},0.1,supervised learning model for time-series,000:00:01

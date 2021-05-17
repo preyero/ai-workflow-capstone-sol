@@ -1,0 +1,2 @@
+unique_id,timestamp,tag,smodel,test_data,x_shape,eval_test,model_version,model_version_note,runtime
+a811163b-a8cf-4264-bf00-7313096b7856,1621274014.7231832,united_kingdom,rf,True,"('2017-11-30', '2019-05-28')",{'rmse': 30147},0.1,supervised learning model for time-series,000:00:02
